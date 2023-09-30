@@ -1,10 +1,12 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { IconButton, MD3Colors } from "react-native-paper";
+import { Button, IconButton, Text } from "react-native-paper";
 import { ChevronLeft } from "../icons/ChevronLeft";
 import OnboradingScreen from "../screens/OnboardingScreen";
 import LoginScreen from "../screens/LoginScreen";
 import SignInScreen from "../screens/SignInScreen";
 import EmailScreen from "../screens/auth/EmailScreen";
+import { Pressable, Touchable, TouchableNativeFeedback } from "react-native";
+import EmailCodeScreen from "../screens/auth/EmailCodeScreen";
 type LoginParamList = {
   WelcomeScreen: undefined;
   Login: undefined;
@@ -22,13 +24,22 @@ const AuthNavigation = () => {
         headerShadowVisible: false,
         headerTitleAlign: "center",
         headerLeft: () => (
-          <IconButton
-            icon={() => <ChevronLeft />}
-            iconColor={MD3Colors.error50}
-            size={20}
+          <Pressable
+            style={{
+              justifyContent: "center",
+              alignItems: "center",
+              display: "flex",
+              flexDirection: "row",
+            }}
             onPress={() => navigation.goBack()}
-          />
+          >
+            <>
+              <IconButton icon={() => <ChevronLeft />} />
+              <Text style={{ color: "#2563EB" }}>Назад</Text>
+            </>
+          </Pressable>
         ),
+        animation: "fade",
       })}
     >
       <Stack.Screen
@@ -45,6 +56,11 @@ const AuthNavigation = () => {
         options={{ headerTitle: "" }}
         name="Email"
         component={EmailScreen}
+      />
+      <Stack.Screen
+        options={{ headerTitle: "" }}
+        name="EmailCode"
+        component={EmailCodeScreen}
       />
     </Stack.Navigator>
   );

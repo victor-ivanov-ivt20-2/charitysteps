@@ -7,9 +7,15 @@ import { Linking, Platform } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useAppDispatch } from "./redux/hooks";
 import { setAuth } from "./redux/slices/AuthSlices";
-
+import { DefaultTheme } from "@react-navigation/native";
 const PERSISTENCE_KEY = "NAVIGATION_STATE_V1";
-
+const MyTheme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    background: "white",
+  },
+};
 const AppControlFlow: FC = () => {
   const [isReady, setIsReady] = useState(false);
   const [initialState, setInitialState] = useState();
@@ -58,6 +64,7 @@ const AppControlFlow: FC = () => {
         onStateChange={(state) =>
           AsyncStorage.setItem(PERSISTENCE_KEY, JSON.stringify(state))
         }
+        theme={MyTheme}
       >
         <AppNavigator />
       </NavigationContainer>

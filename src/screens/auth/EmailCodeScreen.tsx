@@ -3,11 +3,9 @@ import { useState } from "react";
 import { View, StyleSheet, Pressable } from "react-native";
 import { TextInput, Button, Text } from "react-native-paper";
 
-const EmailScreen = () => {
+const EmailCodeScreen = () => {
   const navigation = useNavigation();
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [openPass, setOpenPass] = useState(true);
 
   const login = async () => {
     if (true) {
@@ -17,10 +15,10 @@ const EmailScreen = () => {
   return (
     <View style={styles.container}>
       <Text variant="headlineMedium" style={styles.title}>
-        Регистрация
+        Подтвердите электронную почту
       </Text>
       <Text variant="titleMedium" style={styles.paragraph}>
-        Введите электронную почту, чтобы получить код подтверждения
+        На почту {email} отправлено письмо с кодом. Введите его здесь:
       </Text>
       <TextInput
         label="Почта"
@@ -127,4 +125,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default EmailScreen;
+export default EmailCodeScreen;
