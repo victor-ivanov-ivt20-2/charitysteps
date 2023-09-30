@@ -1,48 +1,118 @@
-import AppControlFlow from "./src/AppControlFlow";
-import { Provider as StoreProvider } from "react-redux";
-import { store } from "./src/redux/store";
-import { PaperProvider } from "react-native-paper";
-import { useFonts } from "expo-font";
-import { useCallback } from "react";
-import * as SplashScreen from "expo-splash-screen";
-import { View, StyleSheet } from "react-native";
+/**
+ * Sample React Native App
+ * https://github.com/facebook/react-native
+ *
+ * @format
+ */
 
-SplashScreen.preventAutoHideAsync();
+import React from 'react';
+import type {PropsWithChildren} from 'react';
+import {
+  SafeAreaView,
+  ScrollView,
+  StatusBar,
+  StyleSheet,
+  Text,
+  useColorScheme,
+  View,
+} from 'react-native';
 
-export default function Main() {
-  const [fontsLoaded] = useFonts({
-    "SF-Pro-Black": require("./assets/fonts/SFPro/SF-Pro-Display-Black.otf"),
-    "SF-Pro-Heavy": require("./assets/fonts/SFPro/SF-Pro-Display-Heavy.otf"),
-    "SF-Pro-Bold": require("./assets/fonts/SFPro/SF-Pro-Display-Bold.otf"),
-    "SF-Pro-Semibold": require("./assets/fonts/SFPro/SF-Pro-Display-Semibold.otf"),
-    "SF-Pro-Medium": require("./assets/fonts/SFPro/SF-Pro-Display-Medium.otf"),
-    "SF-Pro-Regular": require("./assets/fonts/SFPro/SF-Pro-Display-Regular.otf"),
-    "SF-Pro-Light": require("./assets/fonts/SFPro/SF-Pro-Display-Light.otf"),
-  });
+import {
+  Colors,
+  DebugInstructions,
+  Header,
+  LearnMoreLinks,
+  ReloadInstructions,
+} from 'react-native/Libraries/NewAppScreen';
 
-  const onLayoutRootView = useCallback(async () => {
-    if (fontsLoaded) {
-      await SplashScreen.hideAsync();
-    }
-  }, [fontsLoaded]);
+type SectionProps = PropsWithChildren<{
+  title: string;
+}>;
 
-  if (!fontsLoaded) {
-    return null;
-  }
+function Section({children, title}: SectionProps): JSX.Element {
+  const isDarkMode = useColorScheme() === 'dark';
+  return (
+    <View style={styles.sectionContainer}>
+      <Text
+        style={[
+          styles.sectionTitle,
+          {
+            color: isDarkMode ? Colors.white : Colors.black,
+          },
+        ]}>
+        {title}
+      </Text>
+      <Text
+        style={[
+          styles.sectionDescription,
+          {
+            color: isDarkMode ? Colors.light : Colors.dark,
+          },
+        ]}>
+        {children}
+      </Text>
+    </View>
+  );
+}
+
+function App(): JSX.Element {
+  const isDarkMode = useColorScheme() === 'dark';
+
+  const backgroundStyle = {
+    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+  };
 
   return (
-    <StoreProvider store={store}>
-      <PaperProvider>
-        <View style={styles.container} onLayout={onLayoutRootView}>
-          <AppControlFlow />
+    <SafeAreaView style={backgroundStyle}>
+      <StatusBar
+        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
+        backgroundColor={backgroundStyle.backgroundColor}
+      />
+      <ScrollView
+        contentInsetAdjustmentBehavior="automatic"
+        style={backgroundStyle}>
+        <Header />
+        <View
+          style={{
+            backgroundColor: isDarkMode ? Colors.black : Colors.white,
+          }}>
+          <Section title="Step One">
+            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
+            screen and then come back to see your edits.
+          </Section>
+          <Section title="See Your Changes">
+            <ReloadInstructions />
+          </Section>
+          <Section title="Debug">
+            <DebugInstructions />
+          </Section>
+          <Section title="Learn More">
+            Read the docs to discover what to do next:Lol
+          </Section>
+          <LearnMoreLinks />
         </View>
-      </PaperProvider>
-    </StoreProvider>
+      </ScrollView>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
+  sectionContainer: {
+    marginTop: 32,
+    paddingHorizontal: 24,
+  },
+  sectionTitle: {
+    fontSize: 24,
+    fontWeight: '600',
+  },
+  sectionDescription: {
+    marginTop: 8,
+    fontSize: 18,
+    fontWeight: '400',
+  },
+  highlight: {
+    fontWeight: '700',
   },
 });
+
+export default App;
