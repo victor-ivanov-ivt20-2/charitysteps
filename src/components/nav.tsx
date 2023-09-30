@@ -3,9 +3,9 @@ import { View, StyleSheet } from "react-native";
 
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Text, BottomNavigation } from "react-native-paper";
-import Icon from "react-native-vector-icons/Ionicons";
 import { CommonActions } from "@react-navigation/native";
-import Ionicons from "react-native-vector-icons/Ionicons";
+import Icon from "react-native-vector-icons/MaterialIcons";
+import MaterialIcon from "react-native-vector-icons/MaterialIcons";
 
 const Tab = createBottomTabNavigator();
 
@@ -16,17 +16,13 @@ export default function Test() {
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
 
-          if (route.name === "Лабораторная 1") {
-            iconName = focused
-              ? "ios-information-circle"
-              : "ios-information-circle-outline";
-          } else if (route.name === "Лабораторная 2") {
-            iconName = focused ? "ios-list" : "ios-list-outline";
+          if (route.name === "Onboarding") {
+            iconName = focused ? "handshake" : "handshake";
           } else {
-            iconName = focused ? "ios-list" : "ios-list-outline";
+            iconName = focused ? "language" : "gradient";
           }
 
-          return <Ionicons name={iconName} size={size} color={color} />;
+          return <MaterialIcon name={iconName} size={size} color={color} />;
         },
         tabBarActiveTintColor: "tomato",
         tabBarInactiveTintColor: "gray",
