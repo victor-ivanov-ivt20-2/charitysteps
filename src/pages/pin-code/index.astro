@@ -1,0 +1,17 @@
+---
+import '@/styles/globals.css'
+import Layout from '../../layouts/Layout.astro';
+import PinCode from "../../components/screens/PinCode"
+---
+
+<Layout title="PinCode">
+    <PinCode client:only />
+</Layout>
+
+<style is:global>
+	html, body {
+		width: 100vw;
+		height: 100vh;
+		user-select: none;
+	}
+</style>

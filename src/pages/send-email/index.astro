@@ -1,0 +1,19 @@
+---
+import '@/styles/globals.css'
+import Layout from '../../layouts/Layout.astro';
+import SendEmail from "../../components/screens/SendEmail"
+
+---
+
+<Layout title="Send Email">
+	<!-- <Onboarding client:only /> -->
+    <SendEmail client:only />
+</Layout>
+
+<style is:global>
+	html, body {
+		width: 100vw;
+		height: 100vh;
+		user-select: none;
+	}
+</style>
