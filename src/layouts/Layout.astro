@@ -3,6 +3,7 @@ interface Props {
 	title: string;
 }
 import AuthLayout from "./AuthLayout"
+import MobileOnlyLayout from "./MobileOnlyLayout"
 
 const { title } = Astro.props;
 ---
@@ -18,8 +19,10 @@ const { title } = Astro.props;
 		<title>{title}</title>
 	</head>
 	<body>
-		<AuthLayout client:only>
-			<slot />
-		</AuthLayout>
+		<MobileOnlyLayout client:only>
+			<AuthLayout client:only>
+				<slot />
+			</AuthLayout>
+		</MobileOnlyLayout>
 	</body>
 </html>

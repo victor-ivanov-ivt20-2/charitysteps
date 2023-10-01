@@ -41,6 +41,7 @@ const Register = () => {
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
     const token = localStorage.getItem("token");
+    localStorage.setItem("name", data.name);
     if (data.confirmPassword == data.password && token) {
       axios
         .post(

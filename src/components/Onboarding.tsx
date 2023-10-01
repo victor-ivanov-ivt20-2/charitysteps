@@ -18,7 +18,7 @@ const Onboarding = () => {
 
   const StepOne = () => {
     return (
-      <div className="flex flex-col py-3 w-full">
+      <div className="flex flex-col py-3 justify-between h-full w-full">
         <div className="px-3 flex w-full flex-row-reverse">
           <a href="/send-email" className="text-neutral-400 text-[17px]">
             Пропустить
@@ -32,12 +32,12 @@ const Onboarding = () => {
         <div className="px-3 flex justify-center items-center py-[10px]">
           <Dots active={count} />
         </div>
-        <img className="px-3" src="" alt="big image" />
+        <img className="px-3 py-3" src="/step1.png" alt="big image" />
         <Button
           onClick={() => {
             addCount();
           }}
-          className="px-3 bg-blue-600 text-[17px] text-white absolute bottom-3 w-full h-[50px]"
+          className="flex mx-3 bg-blue-600 text-[17px] text-white h-[50px]"
         >
           Продолжить
         </Button>
@@ -47,7 +47,7 @@ const Onboarding = () => {
 
   const StepTwo = () => {
     return (
-      <div className=" flex flex-col py-3 w-full">
+      <div className=" flex flex-col py-3 justify-between h-full w-full">
         <div className="px-3 flex w-full flex-row-reverse">
           <a href="/send-email" className="text-neutral-400 text-[17px]">
             Пропустить
@@ -61,23 +61,21 @@ const Onboarding = () => {
         <div className="px-3 flex justify-center items-center py-[10px]">
           <Dots active={count} />
         </div>
-        <img className="px-3" src="" alt="big image" />
-        <div>
-          <Button
-            onClick={addCount}
-            variant="default"
-            className="px-3 bg-blue-600 text-[17px] text-white absolute bottom-3 w-full h-[50px]"
-          >
-            Продолжить
-          </Button>
-        </div>
+        <img className="px-3 py-3" src="/step2.png" alt="big image" />
+        <Button
+          onClick={addCount}
+          variant="default"
+          className="mx-3 bg-blue-600 text-[17px] text-white h-[50px]"
+        >
+          Продолжить
+        </Button>
       </div>
     );
   };
 
   const StepThird = () => {
     return (
-      <div className=" flex flex-col py-3 w-full">
+      <div className=" flex flex-col justify-between py-3 h-full w-full">
         <div className="px-3 flex w-full flex-row-reverse ">
           <a href="/send-email" className="text-neutral-400 text-[17px]">
             Пропустить
@@ -91,9 +89,9 @@ const Onboarding = () => {
         <div className="px-3 flex justify-center items-center py-[10px]">
           <Dots active={count} />
         </div>
-        <img className="px-3" src="" alt="big image" />
-        <Button className="px-3 bg-blue-600 text-[17px] text-white absolute bottom-3 w-full h-[50px]">
-          <a className="w-full h-full" href="/send-email">
+        <img className="px-3 py-3" src="/step3.png" alt="big image" />
+        <Button className="mx-3 bg-blue-600 text-[17px] text-white h-[50px]">
+          <a className="w-full h-full text-center " href="/send-email">
             Продолжить
           </a>
         </Button>
@@ -148,7 +146,7 @@ const Onboarding = () => {
         </motion.div>
       </motion.div>
       {isMobile ? (
-        <div className="flex">
+        <div className="flex h-full">
           {count === 0 && <StepOne />}
           {count === 1 && <StepTwo />}
           {count === 2 && <StepThird />}
